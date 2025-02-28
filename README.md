@@ -1,1 +1,3 @@
-# i2j
+# p2i
+
+From patterns to insights 
