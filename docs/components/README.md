@@ -22,18 +22,18 @@ This section provides detailed documentation for each core component of the LLM 
                                     │
                     ┌───────────────┴───────────────┐
                     │                               │
-           ┌────────┴────────┐           ┌─────────┴─────────┐
-           │ ComplexityParser│           │    CodeParser     │
-           └────────┬────────┘           └─────────┬─────────┘
-                    │                              │
-           ┌────────┴────────┐           ┌─────────┴─────────┐
-           │ SchemaOptimizer │           │LanguageAnalyzers  │
-           └─────────────────┘           └─────────┬─────────┘
-                                                  │
-                                        ┌─────────┴─────────┐
-                                        │  Python │  Java   │
-                                        │  COBOL  │  ...    │
-                                        └───────────────────┘
+           ┌────────┴────────┐            ┌─────────┴─────────┐
+           │ ComplexityParser│            │    CodeParser     │
+           └────────┬────────┘            └─────────┬─────────┘
+                    │                               │
+           ┌────────┴────────┐            ┌─────────┴─────────┐
+           │ SchemaOptimizer │            │LanguageAnalyzers  │
+           └─────────────────┘            └─────────┬─────────┘
+                                                    │
+                                          ┌─────────┴─────────┐
+                                          │  Python │  Java   │
+                                          │  COBOL  │  ...    │
+                                          └───────────────────┘
 ```
 
 ## Component Interactions
