@@ -81,6 +81,65 @@ The parser:
 3. Maintains context between sub-schemas
 4. Validates intermediate results
 
+## Complexity-Descent Methodology
+
+The Complexity Parser uses a specialized "complexity-descent" approach, inspired by recursive descent parsing but adapted specifically for handling complex JSON schemas.
+
+### Core Concept
+
+The complexity-descent methodology works through four main phases:
+
+1. **Recursive Complexity Analysis**
+   - Analyzes schema complexity at each level
+   - Assigns complexity scores based on:
+     - Nesting depth
+     - Number of properties
+     - Type complexity
+   - Determines split points based on complexity thresholds
+
+2. **Top-Down Decomposition**
+   - Starts from the root schema
+   - Splits complex schemas into simpler sub-schemas
+   - Maintains relationships between components
+   - Preserves context during descent
+
+3. **Bottom-Up Processing**
+   - Processes simplest components first
+   - Combines results moving up the complexity tree
+   - Maintains validation at each level
+   - Ensures schema integrity
+
+4. **Optimization**
+   - Parallel processing of independent sub-schemas
+   - Caching of common patterns
+   - Memory-efficient processing
+   - Context preservation across splits
+
+Example Implementation:
+```python
+class ComplexityParser:
+    def complexity_descent_parse(self, text, schema):
+        # Phase 1: Analyze complexity
+        complexity = self.calculate_complexity(schema)
+        
+        if complexity > self.threshold:
+            # Phase 2: Decomposition
+            sub_schemas = self.split_schema(schema)
+            
+            # Phase 3: Process sub-schemas
+            results = []
+            for sub in sub_schemas:
+                # Recursive descent
+                result = self.complexity_descent_parse(text, sub)
+                results.append(result)
+            
+            # Phase 4: Combine with optimization
+            return self.optimized_combine(results)
+        else:
+            # Direct processing for simple schemas
+            return self.direct_parse(text, schema)
+```
+
 ## Advanced Features
 
 ### 1. Schema Optimization
@@ -208,4 +267,3 @@ parser = ComplexityParser()
 # Optimize and parse
 optimized_schema = optimizer.optimize(complex_schema)
 result = parser.parse(text, optimized_schema)
-```
